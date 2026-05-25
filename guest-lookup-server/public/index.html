@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Your Seat - Premium Event Experience</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0a0604 0%, #1a0f1e 25%, #0d0400 50%, #1a0f1e 75%, #0a0604 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #f4f1eb;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(217, 180, 143, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 80% 50%, rgba(139, 106, 74, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .luxury-container {
+            width: 100%;
+            max-width: 900px;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .decorative-line {
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #d9b48f, transparent);
+            margin: 0 auto 24px;
+            animation: expandWidth 1s ease;
+        }
+
+        @keyframes expandWidth {
+            from { width: 0; }
+            to { width: 80px; }
+        }
+
+        .logo {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+            text-shadow: 0 20px 40px rgba(217, 180, 143, 0.2);
+        }
+
+        .header-section h1 {
+            font-size: 3.8rem;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+            font-weight: 700;
+            background: linear-gradient(180deg, #f4f1eb 0%, #d9b48f 50%, #b09175 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-section p {
+            font-size: 1.2rem;
+            color: rgba(244, 241, 235, 0.75);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .card-wrapper {
+            perspective: 1000px;
+            margin-bottom: 40px;
+        }
+
+        .search-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 32px;
+            padding: 48px;
+            box-shadow: 0 25px 100px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            animation: slideUp 0.8s ease 0.2s both;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .search-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(217, 180, 143, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .form-group {
+            margin-bottom: 28px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+            color: #d7c5a3;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 18px 24px;
+            border: 2px solid rgba(255, 255, 255, 0.12);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #f4f1eb;
+            font-size: 1.05rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 500;
+        }
+
+        .form-group input::placeholder {
+            color: rgba(244, 241, 235, 0.3);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #d9b48f;
+            box-shadow: 0 0 0 4px rgba(217, 180, 143, 0.15), inset 0 2px 8px rgba(217, 180, 143, 0.1);
+        }
+
+        .search-button {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #b09175 0%, #d9b48f 100%);
+            color: #0a0604;
+            border: none;
+            border-radius: 16px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-transform: uppercase;
+            margin-top: 12px;
+            box-shadow: 0 15px 40px rgba(217, 180, 143, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .search-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .search-button:hover:not(:disabled)::before {
+            left: 100%;
+        }
+
+        .search-button:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 25px 60px rgba(217, 180, 143, 0.35);
+        }
+
+        .search-button:active:not(:disabled) {
+            transform: translateY(-1px);
+        }
+
+        .search-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .result-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%);
+            backdrop-filter: blur(30px);
+            border: 2px solid rgba(217, 180, 143, 0.3);
+            border-radius: 32px;
+            padding: 48px;
+            box-shadow: 0 25px 100px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            display: none;
+            animation: slideUp 0.8s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .group-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(217, 180, 143, 0.25);
+            border-radius: 24px;
+            padding: 28px;
+            margin-top: 28px;
+        }
+
+        .group-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .group-header .seat-label {
+            margin-bottom: 8px;
+            color: rgba(244, 241, 235, 0.75);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+
+        .group-header .seat-value {
+            font-size: 1.8rem;
+            line-height: 1.2;
+            margin: 0;
+        }
+
+        .group-members table {
+            width: 100%;
+            border-collapse: collapse;
+            color: #f4f1eb;
+        }
+
+        .group-members th,
+        .group-members td {
+            padding: 12px 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            text-align: left;
+        }
+
+        .group-members th {
+            color: #d9b48f;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+        }
+
+        .group-members tr:hover {
+            background: rgba(217, 180, 143, 0.08);
+        }
+
+        .result-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(217, 180, 143, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .result-card.show {
+            display: block;
+        }
+
+        .result-header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid rgba(217, 180, 143, 0.3);
+            padding-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .result-header h2 {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            background: linear-gradient(180deg, #d9b48f 0%, #f4f1eb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideInDown 0.6s ease;
+        }
+
+        .event-info {
+            font-size: 0.95rem;
+            color: rgba(244, 241, 235, 0.8);
+            line-height: 2;
+            animation: slideInUp 0.6s ease 0.1s both;
+        }
+
+        .seating-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin: 40px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .seat-display {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+            border: 2px solid rgba(217, 180, 143, 0.4);
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: scaleIn 0.6s ease 0.2s both;
+            position: relative;
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .seat-display:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.05));
+            border-color: #d9b48f;
+            transform: translateY(-8px);
+            box-shadow: 0 15px 50px rgba(217, 180, 143, 0.2);
+        }
+
+        .seat-label {
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: rgba(244, 241, 235, 0.65);
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .seat-value {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #d9b48f;
+            font-family: 'Monaco', 'Courier New', monospace;
+            letter-spacing: 0.08em;
+            text-shadow: 0 4px 20px rgba(217, 180, 143, 0.2);
+        }
+
+        .reset-button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, rgba(217, 180, 143, 0.2), rgba(217, 180, 143, 0.1));
+            color: #d9b48f;
+            border: 2px solid rgba(217, 180, 143, 0.4);
+            border-radius: 16px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .reset-button:hover {
+            background: linear-gradient(135deg, rgba(217, 180, 143, 0.3), rgba(217, 180, 143, 0.2));
+            border-color: #d9b48f;
+            transform: translateY(-2px);
+        }
+
+        .error-state {
+            display: none;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .error-state.show {
+            display: block;
+            animation: slideUp 0.8s ease;
+        }
+
+        .error-icon {
+            font-size: 4.5rem;
+            margin-bottom: 24px;
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .error-message {
+            font-size: 1.2rem;
+            color: #ffb3b3;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            border-top-color: #d9b48f;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-25px); }
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(217, 180, 143, 0.4), transparent);
+            margin: 50px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-text {
+            text-align: center;
+            color: rgba(244, 241, 235, 0.5);
+            font-size: 0.9rem;
+            margin-top: 40px;
+            letter-spacing: 0.05em;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            .header-section h1 {
+                font-size: 2.4rem;
+            }
+
+            .header-section p {
+                font-size: 1rem;
+            }
+
+            .search-card,
+            .result-card {
+                padding: 32px 24px;
+            }
+
+            .seating-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .seat-value {
+                font-size: 3rem;
+            }
+
+            .logo {
+                font-size: 3.5rem;
+            }
+
+            .seat-display {
+                padding: 32px 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-section h1 {
+                font-size: 2rem;
+            }
+
+            .search-card,
+            .result-card {
+                padding: 24px 16px;
+                border-radius: 24px;
+            }
+
+            .seat-value {
+                font-size: 2.5rem;
+            }
+
+            .logo {
+                font-size: 2.5rem;
+            }
+
+            .form-group input {
+                padding: 14px 18px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="luxury-container">
+        <!-- Header Section -->
+        <div class="header-section">
+            <div class="decorative-line"></div>
+            <div class="logo">✨</div>
+            <h1>Find Your Seat</h1>
+            <p>Discover your premium seating assignment for this exclusive event</p>
+        </div>
+
+        <!-- Search Card -->
+        <div class="card-wrapper">
+            <div class="search-card" id="searchCard">
+                <form id="searchForm">
+                    <div class="form-group">
+                        <label for="eventCode">Event Code</label>
+                        <input 
+                            type="text" 
+                            id="eventCode" 
+                            placeholder="E.g., ABC123XYZ" 
+                            required
+                            autocomplete="off"
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label for="guestName">Guest or Group Leader</label>
+                        <input 
+                            type="text" 
+                            id="guestName" 
+                            placeholder="Enter guest, leader, or group name" 
+                            required
+                            autocomplete="off"
+                        />
+                    </div>
+                    <button type="submit" class="search-button" id="searchBtn">
+                        Search Now
+                    </button>
+                </form>
+            </div>
+
+            <!-- Result Card -->
+            <div class="result-card" id="resultCard">
+                <div class="result-header">
+                    <h2 id="welcomeMessage"></h2>
+                    <div class="event-info" id="eventInfo"></div>
+                </div>
+
+                <div class="seating-grid" id="seatGrid">
+                    <div class="seat-display">
+                        <div class="seat-label">Table</div>
+                        <div class="seat-value" id="tableValue">-</div>
+                    </div>
+                    <div class="seat-display">
+                        <div class="seat-label">Seat</div>
+                        <div class="seat-value" id="seatValue">-</div>
+                    </div>
+                </div>
+
+                <div class="group-card" id="groupCard" style="display:none;">
+                    <div class="group-header">
+                        <div>
+                            <p class="seat-label">Group</p>
+                            <div class="seat-value" id="groupName">-</div>
+                        </div>
+                        <div>
+                            <p class="seat-label">Type</p>
+                            <div class="seat-value" id="groupType">-</div>
+                        </div>
+                    </div>
+                    <div class="event-info" id="groupDetails"></div>
+                    <div class="group-members" id="groupMembers"></div>
+                </div>
+
+                <button type="button" class="reset-button" onclick="resetSearch()">
+                    Search Another Guest
+                </button>
+            </div>
+
+            <!-- Error State -->
+            <div class="error-state" id="errorState">
+                <div class="error-icon">❌</div>
+                <div class="error-message" id="errorMessage"></div>
+                <button type="button" class="reset-button" onclick="resetSearch()">
+                    Try Again
+                </button>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="footer-text">
+            <p>Premium Event Seating Portal • Secure • Confidential • Elegant</p>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:5000/api';
+
+        document.getElementById('searchForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            await searchGuest();
+        });
+
+        function getUpperCase(value) {
+            return value.toUpperCase().trim();
+        }
+
+        async function searchGuest() {
+            const eventCode = getUpperCase(document.getElementById('eventCode').value);
+            const guestName = document.getElementById('guestName').value.trim();
+            const normalizedName = guestName.toLowerCase();
+
+            const searchBtn = document.getElementById('searchBtn');
+            searchBtn.disabled = true;
+            searchBtn.innerHTML = '<span class="loading"></span> Searching...';
+
+            try {
+                const response = await fetch(
+                    `${API_URL}/events/serial/${eventCode}`,
+                    {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }
+                );
+
+                if (!response.ok) {
+                    throw new Error('Event not found. Please check your event code.');
+                }
+
+                const data = await response.json();
+                const event = data.event;
+
+                if (!event) {
+                    showError('Event not found.');
+                    return;
+                }
+
+                const guest = (event.guests || []).find((g) => {
+                    const fullName = `${g.name || ''} ${g.surname || ''}`.toLowerCase().trim();
+                    return fullName === normalizedName || (g.name || '').toLowerCase() === normalizedName || (g.surname || '').toLowerCase() === normalizedName;
+                });
+
+                if (guest) {
+                    showResult(guest, event);
+                    return;
+                }
+
+                const group = (event.groups || []).find((groupItem) => {
+                    const groupName = (groupItem.name || '').toLowerCase();
+                    const leaderName = (groupItem.leader?.name || '').toLowerCase();
+                    const leaderPhone = (groupItem.leader?.phone || '').toLowerCase();
+                    const groupType = (groupItem.type || '').toLowerCase();
+                    const memberMatch = (groupItem.members || []).some((member) => {
+                        const memberName = `${member.name || ''} ${member.surname || ''}`.toLowerCase().trim();
+                        return memberName === normalizedName || (member.name || '').toLowerCase() === normalizedName || (member.surname || '').toLowerCase() === normalizedName;
+                    });
+
+                    return (
+                        groupName === normalizedName ||
+                        leaderName === normalizedName ||
+                        leaderPhone === normalizedName ||
+                        groupType === normalizedName ||
+                        memberMatch
+                    );
+                });
+
+                if (group) {
+                    showGroupResult(group, event);
+                    return;
+                }
+
+                showError(`Could not find a matching guest, leader, or group for "${guestName}".`);
+            } catch (error) {
+                showError(error.message || 'Unable to find your event. Please try again.');
+            } finally {
+                searchBtn.disabled = false;
+                searchBtn.innerHTML = 'Search Now';
+            }
+        }
+
+        function showResult(guest, event) {
+            const eventDate = new Date(event.date).toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+
+            document.getElementById('welcomeMessage').textContent = `Welcome, ${guest.name}!`;
+            document.getElementById('eventInfo').innerHTML = `
+                <strong>${event.name}</strong><br>
+                ${eventDate} • ${event.location}
+            `;
+            document.getElementById('tableValue').textContent = guest.table || '-';
+            document.getElementById('seatValue').textContent = guest.seatNumber || '-';
+            document.getElementById('seatGrid').style.display = 'grid';
+            document.getElementById('groupCard').style.display = 'none';
+
+            document.getElementById('searchCard').style.display = 'none';
+            document.getElementById('errorState').classList.remove('show');
+            document.getElementById('resultCard').classList.add('show');
+        }
+
+        function showGroupResult(group, event) {
+            const eventDate = new Date(event.date).toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+
+            document.getElementById('welcomeMessage').textContent = `Group seating for ${group.name || 'your group'}`;
+            document.getElementById('eventInfo').innerHTML = `
+                <strong>${event.name}</strong><br>
+                ${eventDate} • ${event.location}
+            `;
+            document.getElementById('seatGrid').style.display = 'none';
+            document.getElementById('groupCard').style.display = 'block';
+            document.getElementById('groupName').textContent = group.name || '-';
+            document.getElementById('groupType').textContent = group.type ? group.type.toUpperCase() : '-';
+            document.getElementById('groupDetails').innerHTML = `
+                <strong>Leader:</strong> ${group.leader?.name || '—'} • ${group.leader?.phone || '—'}<br>
+                <strong>Guests:</strong> ${group.numberOfGuests || (group.members?.length || 0)}<br>
+                <strong>Notes:</strong> ${group.notes || 'No special notes'}
+            `;
+
+            const members = group.members || [];
+            if (members.length > 0) {
+                const rows = members.map((member) => `
+                    <tr>
+                        <td>${member.name || '-'}</td>
+                        <td>${member.surname || '-'}</td>
+                        <td>${member.phone || '-'}</td>
+                        <td>${member.table || '-'}</td>
+                        <td>${member.seatNumber || '-'}</td>
+                    </tr>
+                `).join('');
+
+                document.getElementById('groupMembers').innerHTML = `
+                    <div class="seating-grid" style="grid-template-columns: 1fr; gap: 12px; margin-top: 20px;">
+                        <div class="seat-display">
+                            <div class="seat-label">Group Members</div>
+                            <div class="event-info" style="margin-top: 12px;">
+                                <table style="width:100%; color:#f4f1eb; border-collapse: collapse;">
+                                    <thead>
+                                        <tr>
+                                            <th style="text-align:left; padding:10px; color:#d9b48f; border-bottom:1px solid rgba(217,180,143,0.3);">Name</th>
+                                            <th style="text-align:left; padding:10px; color:#d9b48f; border-bottom:1px solid rgba(217,180,143,0.3);">Surname</th>
+                                            <th style="text-align:left; padding:10px; color:#d9b48f; border-bottom:1px solid rgba(217,180,143,0.3);">Phone</th>
+                                            <th style="text-align:left; padding:10px; color:#d9b48f; border-bottom:1px solid rgba(217,180,143,0.3);">Table</th>
+                                            <th style="text-align:left; padding:10px; color:#d9b48f; border-bottom:1px solid rgba(217,180,143,0.3);">Seat</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        ${rows}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                document.getElementById('groupMembers').innerHTML = '<p class="event-info">No members have been added to this group yet.</p>';
+            }
+
+            document.getElementById('searchCard').style.display = 'none';
+            document.getElementById('errorState').classList.remove('show');
+            document.getElementById('resultCard').classList.add('show');
+        }
+
+        function showError(message) {
+            document.getElementById('errorMessage').textContent = message;
+            document.getElementById('searchCard').style.display = 'none';
+            document.getElementById('resultCard').classList.remove('show');
+            document.getElementById('errorState').classList.add('show');
+        }
+
+        function resetSearch() {
+            document.getElementById('searchForm').reset();
+            document.getElementById('searchCard').style.display = 'block';
+            document.getElementById('resultCard').classList.remove('show');
+            document.getElementById('errorState').classList.remove('show');
+            document.getElementById('eventCode').focus();
+        }
+
+        // Focus on first input on load
+        window.addEventListener('load', () => {
+            document.getElementById('eventCode').focus();
+        });
+    </script>
+</body>
+</html>

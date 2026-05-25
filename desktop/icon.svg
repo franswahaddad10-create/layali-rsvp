@@ -1,0 +1,6 @@
+<svg width="256" height="256" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" fill="#1A1410"/>
+  <path d="M135 85H377M135 427H377" stroke="#D8B678" stroke-width="4"/>
+  <path d="M173 60V452M339 60V452" stroke="#D8B678" stroke-width="3" opacity="0.6"/>
+  <text x="256" y="310" text-anchor="middle" fill="#F6E8CF" font-size="120" font-family="Georgia, 'Times New Roman', serif" letter-spacing="8">LAYALI</text>
+</svg>

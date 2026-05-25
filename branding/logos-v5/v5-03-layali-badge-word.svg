@@ -1,0 +1,9 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="900" fill="#F5E8D3"/>
+  <circle cx="520" cy="450" r="170" fill="#2D1E14"/>
+  <circle cx="520" cy="450" r="140" stroke="#D2AA66" stroke-width="8"/>
+  <path d="M455 500V408C455 372 484 343 520 343C556 343 585 372 585 408V500" stroke="#F5E8D3" stroke-width="14" stroke-linecap="round"/>
+  <path d="M490 500V440H550V500" stroke="#D2AA66" stroke-width="10"/>
+  <text x="980" y="500" text-anchor="middle" fill="#2B1E14" font-size="154" font-family="Arial Black, Arial, sans-serif" letter-spacing="10">LAYALI</text>
+  <text x="980" y="580" text-anchor="middle" fill="#6F4A2A" font-size="28" font-family="Arial, Helvetica, sans-serif" letter-spacing="8">LUXURY EVENT OPERATIONS</text>
+</svg>

@@ -1,0 +1,17 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="metal" x1="520" y1="360" x2="1080" y2="530" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF3DA"/>
+      <stop offset="0.5" stop-color="#C18B50"/>
+      <stop offset="1" stop-color="#FFF0D1"/>
+    </linearGradient>
+    <filter id="shadow" x="440" y="280" width="760" height="360" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="14" stdDeviation="10" flood-color="#2A1C12" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="900" fill="#F5E8D3"/>
+  <g filter="url(#shadow)">
+    <text x="800" y="505" text-anchor="middle" fill="url(#metal)" stroke="#3C291A" stroke-width="2" font-size="176" font-family="Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif" letter-spacing="14">LAYALI</text>
+  </g>
+  <text x="800" y="600" text-anchor="middle" fill="#6F4A2A" font-size="30" font-family="Arial, Helvetica, sans-serif" letter-spacing="9">SIGNATURE EVENT SYSTEM</text>
+</svg>

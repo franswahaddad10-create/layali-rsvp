@@ -1,0 +1,25 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="layaliFill" x1="560" y1="380" x2="1040" y2="540" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8A5A33"/>
+      <stop offset="0.5" stop-color="#2B1E14"/>
+      <stop offset="1" stop-color="#A06A3E"/>
+    </linearGradient>
+    <linearGradient id="layaliShine" x1="560" y1="390" x2="1040" y2="455" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8EEDC" stop-opacity="0.75"/>
+      <stop offset="1" stop-color="#F8EEDC" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="layaliShadow" x="490" y="270" width="620" height="340" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="10" stdDeviation="8" flood-color="#2B1E14" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="900" fill="#F5E8D3"/>
+  <path d="M540 340H1060" stroke="#6F4A2A" stroke-width="3" opacity="0.7"/>
+  <path d="M540 570H1060" stroke="#6F4A2A" stroke-width="3" opacity="0.7"/>
+  <g filter="url(#layaliShadow)">
+    <text x="800" y="500" text-anchor="middle" fill="url(#layaliFill)" font-size="166" font-family="Arial Black, Arial, Helvetica, sans-serif" letter-spacing="20">LAYALI</text>
+    <text x="800" y="500" text-anchor="middle" fill="none" stroke="#2B1E14" stroke-width="1.8" font-size="166" font-family="Arial Black, Arial, Helvetica, sans-serif" letter-spacing="20">LAYALI</text>
+    <text x="800" y="500" text-anchor="middle" fill="url(#layaliShine)" font-size="166" font-family="Arial Black, Arial, Helvetica, sans-serif" letter-spacing="20">LAYALI</text>
+  </g>
+  <text x="800" y="625" text-anchor="middle" fill="#6F4A2A" font-size="30" font-family="Arial, Helvetica, sans-serif" letter-spacing="8">SMART RSVP EXPERIENCE</text>
+</svg>
