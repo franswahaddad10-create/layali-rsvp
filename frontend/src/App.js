@@ -4,7 +4,7 @@ import EventsList from './pages/EventsList';
 import AdminPanel from './pages/AdminPanel';
 import GuestLookup from './pages/GuestLookup';
 import GuestRsvpPage from './pages/GuestRsvpPage';
-import HallDesign from './pages/HallDesign';
+import HallDesign from './pages/HallDesignUltraWide';
 import EventDetail from './pages/EventDetail';
 import LiveEventMapPage from './pages/LiveEventMapPage';
 import EntranceCheckInPage from './pages/EntranceCheckInPage';
