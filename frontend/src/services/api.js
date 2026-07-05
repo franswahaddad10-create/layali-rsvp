@@ -24,6 +24,11 @@ const resolveApiBaseUrl = () => {
   const desktopApiBaseUrl = typeof window !== 'undefined' ? window.desktopApp?.apiBaseUrl?.trim() : '';
   const envBaseUrl = process.env.REACT_APP_API_URL?.trim();
 
+  // In production, always prioritize the environment variable
+  if (process.env.NODE_ENV === 'production' && envBaseUrl) {
+    return normalizeBaseUrl(envBaseUrl);
+  }
+
   if (desktopApiBaseUrl) {
     return normalizeBaseUrl(desktopApiBaseUrl);
   }
