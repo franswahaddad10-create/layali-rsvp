@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "buildCommand": "npm ci --prefix frontend && npm run build --prefix frontend",
+  "outputDirectory": "frontend/build",
+  "installCommand": "npm ci --prefix frontend",
+  "framework": "create-react-app",
+  "cleanUrls": true
+}
